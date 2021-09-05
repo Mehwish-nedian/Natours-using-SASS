@@ -1,0 +1,46 @@
+.header{
+    height: 95vh; /* vh is same as '%' 95vh means 95% of the viewport*/
+    background-image: linear-gradient(to right bottom, 
+    rgba($color-primary-light-green, 0.8),
+    rgba($color-primary-dark-green, 0.8)), 
+    url('../img/hero-small.jpg');
+    background-size: cover; /*Always set the width to the size of the viewport*/
+    background-position: top; /* On changinig height top of the image remains sticked. 
+    i.e image is cropped from the bottom...*/
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    position: relative;
+
+    
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), // This will work when resolution >=192dpi and //(min-width: 600px)==> This is used because even when the resolution is very high, larger image isn't required for devices with width smaller than 600px
+           only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), // To make it work on safari bcz (min-resolution) isn't supported on it.
+           only screen and (min-width: 125em) // This will work when the width >=2000px irrespective od resolution
+            { // 192dpi is the resolution of apple retinal screen which is a high resolution screen used as a reference
+            
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-primary-light-green, 0.8),
+            rgba($color-primary-dark-green, 0.8)), 
+            url('../img/hero.jpg');
+    }
+    @include respond(phone){
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+    &__logo-box{
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+
+    &__logo{
+        height: 3.5rem;
+    }
+
+    &__text-box{
+        position: absolute;
+        top: 41%;/* with respect to parent element*/
+        left: 50%; /* with respect to parent element*/
+        transform: translate(-50%, -50%); /* with respect to the element itself*/
+        text-align: center;
+    }
+}
